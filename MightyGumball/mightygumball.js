@@ -1,4 +1,5 @@
 
+
 var lastReportTime = 0;
 
 window.onload = init;
