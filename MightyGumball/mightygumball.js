@@ -35,7 +35,7 @@ function updateSales(sales){
 		var sale = sales[i];
 		var div = document.createElement("div");
 		div.setAttribute("class", "saleItem");
-		div.innerHTML = sale.name + " sold" + sale.sales + " gumballs";
+		div.innerHTML = sale.name + " sold " + sale.sales + " gumballs";
 		salesDiv.appendChild(div);
 	}
 	if (sales.length>0) {
