@@ -41,6 +41,6 @@ function updateSales(sales){
 		lastReportTime = sales[sales.length-1].time;
 	}
 	
-}
+} 
 
 
