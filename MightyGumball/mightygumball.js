@@ -1,8 +1,11 @@
 
 var lastReportTime = 0;
 
-window.onload = function (){
-	
+window.onload = inti
+
+function init() {
+	var interval = setInterval(handleRefresh, 3000);
+	handleRefresh();
 }
 
 function updateSales(sales){
@@ -22,6 +25,7 @@ function updateSales(sales){
 }
 
 function handleRefresh(){
+	console.log("here");
 	var url = "http://gumball.wickedlysmart.com" +
 	    "?callback=updateSales" +
 	    "&lastreporttime=" + lastReportTime +
