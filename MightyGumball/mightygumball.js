@@ -1,5 +1,5 @@
 window.onload = function (){
-	var url = "/MightyGumball/sales.json";
+	var url = "http://gumball.wickedlysmart.com";
 	var request = new XMLHttpRequest();
 	request.open("GET", url);
 	request.onload = function() {
