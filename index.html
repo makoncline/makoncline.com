@@ -4,6 +4,28 @@
   <head>
     <meta charset="utf-8"> 
     <meta name="viewport" content="width=device-width, initial-scale=1">
+	  
+	  <script>
+		window.onload = init;
+		  
+		function init (){
+			greetChann();
+			var interval = setInterval(greetChann,3000);
+		  }
+		  
+		function greetChann() {
+			var words1 = ["sweet", "funny", "30,000 foot", "B-to-B", "win-win"];
+			var words2 = ["nice", "pretty", "oriented", "focused", "aligned"];
+			var words3 = ["cute", "smart", "tipping-point", "strategy", "vision"];
+			var rand1 = Math.floor(Math.random() * words1.length);
+			var rand2 = Math.floor(Math.random() * words2.length);
+			var rand3 = Math.floor(Math.random() * words3.length);
+			var phrase = "you're" + words1[rand1] + " " + words2[rand2] + " " + words3[rand3];
+			var phraseElement = document.getElementById("phrase");
+			phraseElement.innerHTML = phrase;
+		}
+</script>
+	  
   </head>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -26,9 +48,16 @@
 	<div class="jumbotron">
 
 		<h1 class="text-center">Hi Chann Chann</h1>
-		<a href="/MightyGumball/MightyGumballSales.html">Mighty Gumball Sales</a>
+		<p class="text-center" id="phrase"></p>
 
 	</div>
+	
+	<section id="projects">
+	<h3>Projects</h3>
+	<ul>
+		<li><a href="/MightyGumball/MightyGumballSales.html">Mighty Gumball Sales</a></li>
+	</ul>
+	</section>
 </div>
 
 </body>
