@@ -22,7 +22,10 @@ function updateSales(sales){
 }
 
 function handleRefresh(){
-	var url = "http://gumball.wickedlysmart.com/" +"?callback=updateSales" + "&lastreporttime=" + lastReportTime + "&random=" + (newDate()).getTime();
+	var url = "http://gumball.wickedlysmart.com" +
+	    "?callback=updateSales" +
+	    "&lastreporttime=" + lastReportTime +
+	    "&random=" + (new Date()).getTime();
 	var newScriptElement = document.createElement("script");
 	newScriptElement.setAttribute("src", url);
 	newScriptElement.setAttribute("id", "jsonp";
