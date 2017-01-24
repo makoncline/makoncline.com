@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	  
 	  <script>
+		var firstTime = true;
 		window.onload = init;
 		  
 		function init (){
@@ -20,7 +21,10 @@
 			var rand1 = Math.floor(Math.random() * words1.length);
 			var rand2 = Math.floor(Math.random() * words2.length);
 			var rand3 = Math.floor(Math.random() * words3.length);
-			var phrase = "you're " + words1[rand1] + " and you're " + words2[rand2] + " and you're " + words3[rand3] +"...";
+			if (firstTime == true){
+				var phrase = "You're " + words1[rand1] + " and you're " + words2[rand2] + " and you're " + words3[rand3] +"...";
+			} else { var phrase = "and you're " + words1[rand1] + " and you're " + words2[rand2] + " and you're " + words3[rand3] +"...";
+				}
 			var phraseElement = document.getElementById("phrase");
 			phraseElement.innerHTML = phrase;
 		}
