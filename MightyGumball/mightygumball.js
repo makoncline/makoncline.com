@@ -8,24 +8,8 @@ function init() {
 	handleRefresh();
 }
 
-function updateSales(sales){
-	var salesDiv = document.getElementById("sales");
-
-	for (var i = 0; i < sales.length; i++){
-		var sale = sales[i];
-		var div = document.createElement("div");
-		div.setAttribute("class", "salesItem");
-		div.innerHTML = sale.name + " sold" + sale.sales + " gumballs";
-		salesDiv.appendChild(div);
-	}
-	if (sales.length>0) {
-		lastReportTime = sales[sales.length-1].time;
-	}
-	
-}
-
 function handleRefresh(){
-	console.log("here");
+	
 	var url = "http://gumball.wickedlysmart.com" +
 	    "?callback=updateSales" +
 	    "&lastreporttime=" + lastReportTime +
@@ -42,3 +26,21 @@ function handleRefresh(){
 		head.replaceChild(newScriptElement, oldScriptElement);
 	}
 }
+
+function updateSales(sales){
+	var salesDiv = document.getElementById("sales");
+
+	for (var i = 0; i < sales.length; i++){
+		var sale = sales[i];
+		var div = document.createElement("div");
+		div.setAttribute("class", "salesItem");
+		div.innerHTML = sale.name + " sold" + sale.sales + " gumballs";
+		salesDiv.appendChild(div);
+	}
+	if (sales.length>0) {
+		lastReportTime = sales[sales.length-1].time;
+	}
+	
+}
+
+
