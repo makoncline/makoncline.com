@@ -14,7 +14,7 @@ div#sales {
 }
 div.saleItem {
 	font-family: Verdana, Helvetica, sans-serif;
-	color: #434343;
+	background-color: #434343;
 	padding: 10px;
 }
 div.saleItem:nth-child(2n) {
