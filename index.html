@@ -23,6 +23,7 @@
 			var rand3 = Math.floor(Math.random() * words3.length);
 			if (firstTime == true){
 				var phrase = "You're " + words1[rand1] + " and you're " + words2[rand2] + " and you're " + words3[rand3] +"...";
+				firstTime = false;
 			} else { var phrase = "and you're " + words1[rand1] + " and you're " + words2[rand2] + " and you're " + words3[rand3] +"...";
 				}
 			var phraseElement = document.getElementById("phrase");
