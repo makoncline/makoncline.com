@@ -1,7 +1,7 @@
 
 var lastReportTime = 0;
 
-window.onload = inti
+window.onload = init;
 
 function init() {
 	var interval = setInterval(handleRefresh, 3000);
