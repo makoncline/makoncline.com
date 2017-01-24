@@ -32,7 +32,7 @@ function handleRefresh(){
 	    "&random=" + (new Date()).getTime();
 	var newScriptElement = document.createElement("script");
 	newScriptElement.setAttribute("src", url);
-	newScriptElement.setAttribute("id", "jsonp";
+	newScriptElement.setAttribute("id", "jsonp");
 				      
 	var oldScriptElement = document.getElementById("jsonp");
 	var head = document.getElementByTagName("head")[0];
