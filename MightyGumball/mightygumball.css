@@ -17,7 +17,7 @@ div.saleItem {
 	color: #434343;
 	padding: 10px;
 }
-div.saleItem:nth-child(even) {
+div.saleItem:nth-child(2n) {
 	background-color: #fafafa;
 }
 div.saleItem:first-child {
