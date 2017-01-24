@@ -12,5 +12,12 @@ window.onload = function (){
 
 function updateSales(responseText){
 	var salesDiv = document.getElementById("sales");
-	salesDiv.innerHTML = responseText;
+	var sales = JSON.parse(responseText);
+	for (var i = 0; i < sales.length; i++){
+		var sales = sales[i];
+		var div = document.createElement("div");
+		div.setAttribute("class", "salesItem");
+		div.innerHTML = sales.name + " sold" + sale.sales + " gumballs";
+		salesDiv.appendChild(div);
+	}
 }
