@@ -19,7 +19,7 @@ function handleRefresh(){
 	newScriptElement.setAttribute("id", "jsonp");
 				      
 	var oldScriptElement = document.getElementById("jsonp");
-	var head = document.getElementByTagName("head")[0];
+	var head = document.getElementsByTagName("head")[0];
 	if (oldScriptElement == null) {
 		head.appendChild(newScriptElement);
 	} else {
