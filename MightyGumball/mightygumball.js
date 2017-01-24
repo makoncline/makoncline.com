@@ -29,7 +29,7 @@ function handleRefresh(){
 				      
 	var oldScriptElement = document.getElementById("jsonp");
 	var head = document.getElementByTagName("head") [0];
-	if oldScriptElement == null) {
+	if (oldScriptElement == null) {
 		head.appendChild(newScriptElement);
 	} else {
 		head.replaceChild(newScriptElement, oldScriptElement);
