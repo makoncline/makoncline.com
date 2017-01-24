@@ -22,13 +22,13 @@ function updateSales(sales){
 }
 
 function handleRefresh(){
-	var url = "http://gumball.wickedlysmart.com" +"?callback=updateSales" + "&lastReportTime=" + lastReportTime + "&random=" + (newDate()).getTime();
+	var url = "http://gumball.wickedlysmart.com/" +"?callback=updateSales" + "&lastreporttime=" + lastReportTime + "&random=" + (newDate()).getTime();
 	var newScriptElement = document.createElement("script");
 	newScriptElement.setAttribute("src", url);
 	newScriptElement.setAttribute("id", "jsonp";
 				      
 	var oldScriptElement = document.getElementById("jsonp");
-	var head = document.getElementByTagName("head") [0];
+	var head = document.getElementByTagName("head")[0];
 	if (oldScriptElement == null) {
 		head.appendChild(newScriptElement);
 	} else {
