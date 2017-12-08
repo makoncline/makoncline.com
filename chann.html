@@ -6,7 +6,7 @@
 	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Home| makoncline.com
+	<title>ChannChann| makoncline.com
 	</title>
 	<!-- Add Favicon -->
 	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
@@ -63,18 +63,35 @@
 		</section>
 		<!-- page container for bootstrap -->
 		<div class="container-fluid">
-			<h2> Posts </h2>
-<ul class="myposts">
-	
-	<li><a href="/blog/2017/11/22/welcome-to-jekyll.html">This is my website</a>
-		<span class="postDate">Nov, 2017</span>
-	</li>
-	
-	<li><a href="/blog/2017/11/22/this-is-my-second-post.html">This is my second post</a>
-		<span class="postDate">Nov, 2017</span>
-	</li>
-	
-</ul>
+			<div class="jumbotron">
+	<h1 class="text-center">Hi Chann Chann</h1>
+	<p class="text-center" id="phrase"></p>	
+</div>
+<script>
+	var firstTime = true;
+	window.onload = init;
+
+	function init (){
+		greetChann();
+		var interval = setInterval(greetChann,3000);
+	}
+
+	function greetChann() {
+		var words1 = ["sweet", "funny", "cute", "pretty", "smart"];
+		var words2 = ["nice", "kind", "loving", "patient", "playful"];
+		var words3 = ["loyal", "happy", "warm", "wise", "curious"];
+		var rand1 = Math.floor(Math.random() * words1.length);
+		var rand2 = Math.floor(Math.random() * words2.length);
+		var rand3 = Math.floor(Math.random() * words3.length);
+		if (firstTime == true){
+			var phrase = "You're " + words1[rand1] + " and you're " + words2[rand2] + " and you're " + words3[rand3] +"...";
+			firstTime = false;
+		} else { var phrase = "and you're " + words1[rand1] + " and you're " + words2[rand2] + " and you're " + words3[rand3] +"...";
+	}
+	var phraseElement = document.getElementById("phrase");
+	phraseElement.innerHTML = phrase;
+}
+</script>
 
 
 
