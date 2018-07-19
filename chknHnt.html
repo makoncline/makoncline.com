@@ -48,23 +48,22 @@
 <body>
 
 	<div>
-		<div style="font-size:12px;">
-<div class="container-fluid">
+		<div style="font-size:14px;">
 <h1>CHICKEN HUNT</h1>
 <p>
 Interface for the game <a href="chickenhunt.io">Chicken Hunt</a>.<br>
-
 </p>
+<div class="container alert alert-secondary">
 	<h1>ETHEREUM</h1>
 	<div class="row">
 		<div class="col-3">ETH/$</div>
-		<div class="col-3" id="ethPriceUsd"></div>
-		<div class="col">GAS PRICE</div>
-		<div class="col-1" id="gasPrice"></div>
+		<div class="col" id="ethPriceUsd"></div>
+		<div class="col-4">GAS PRICE</div>
+		<div class="col" id="gasPrice"></div>
 	</div>
 </div>
-<p></p>
-<div class="container">
+
+<div class="container alert alert-secondary">
 	<h1>MY STATS</h1>
 	<div class="row">
 		<div class="col" id="myAddress"></div>
@@ -88,9 +87,8 @@ Interface for the game <a href="chickenhunt.io">Chicken Hunt</a>.<br>
 		<div class="col" id="myStlChicken"></div>
 	</div>
 </div>
-<p></p>
 
-<div class="container">
+<div class="container alert alert-secondary">
 	<h1>ALTAR</h1>
 	<div class="row">
 		<div class="col-2">CHKN</div>
@@ -109,9 +107,8 @@ Interface for the game <a href="chickenhunt.io">Chicken Hunt</a>.<br>
 		</div>
 	</div>
 </div>
-<p></p>
 
-<div class="container">
+<div class="container alert alert-secondary">
 	<h1>ATTACK</h1>
 	<div class="row">
 		<div class="col-3">COST</div>
@@ -123,7 +120,7 @@ Interface for the game <a href="chickenhunt.io">Chicken Hunt</a>.<br>
 		<div class="col-4" id="attackBreakEven"></div>
 	</div>
 	<p></p>
-	<div id="attack0">
+	<div id="attack0" class="alert alert-light">
 		<div class="row">
 			<div class="col" id="address0"></div>
 		</div>
@@ -155,7 +152,7 @@ Interface for the game <a href="chickenhunt.io">Chicken Hunt</a>.<br>
 		</div>
 	</div>
 <p></p>
-	<div id="attack1">
+	<div id="attack1" class="alert alert-light">
 		<div class="row">
 			<div class="col" id="address1"></div>
 		</div>
@@ -187,7 +184,7 @@ Interface for the game <a href="chickenhunt.io">Chicken Hunt</a>.<br>
 		</div>
 	</div>
 
-	<div id="attack2">
+	<div id="attack2" class="alert alert-light">
 		<div class="row">
 			<div class="col" id="address2"></div>
 		</div>
@@ -219,7 +216,7 @@ Interface for the game <a href="chickenhunt.io">Chicken Hunt</a>.<br>
 		</div>
 	</div>
 
-	<div id="attack3">
+	<div id="attack3" class="alert alert-light">
 		<div class="row">
 			<div class="col" id="address3"></div>
 		</div>
@@ -251,7 +248,7 @@ Interface for the game <a href="chickenhunt.io">Chicken Hunt</a>.<br>
 		</div>
 	</div>
 
-	<div id="attack4">
+	<div id="attack4" class="alert alert-light">
 		<div class="row">
 			<div class="col" id="address4"></div>
 		</div>
@@ -282,9 +279,8 @@ Interface for the game <a href="chickenhunt.io">Chicken Hunt</a>.<br>
 			</div>
 		</div>
 	</div>
-
-	<p></p>
-	<div class="row">
+</div>
+<div class="row">
 		<div class="col">
 			<button type="button" class="btn btn-secondary btn-sm btn-block" id="refreshBtn" onclick="
 				function longRefresh(){
@@ -295,7 +291,6 @@ Interface for the game <a href="chickenhunt.io">Chicken Hunt</a>.<br>
 			">LONG REFRESH</button>
 		</div>
 	</div>
-</div>
 </div>
 
 <script type="text/javascript">
