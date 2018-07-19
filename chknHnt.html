@@ -140,8 +140,8 @@ Interface for the game <a href="chickenhunt.io">Chicken Hunt</a>.<br>
 				<div class="row">
 					<div class="col-3">CHKN/DPT</div>
 					<div class="col" id="stlchkn0"></div>
-					<div class="col-2">PROFIT</div>
-					<div class="col" id="profit0"></div>
+					<div class="col-3">PROFIT</div>
+					<div class="col-2" id="profit0"></div>
 				</div>
 			</div>
 		</div>
@@ -172,8 +172,8 @@ Interface for the game <a href="chickenhunt.io">Chicken Hunt</a>.<br>
 				<div class="row">
 					<div class="col-3">CHKN/DPT</div>
 					<div class="col" id="stlchkn1"></div>
-					<div class="col-2">PROFIT</div>
-					<div class="col" id="profit1"></div>
+					<div class="col-3">PROFIT</div>
+					<div class="col-2" id="profit1"></div>
 				</div>
 			</div>
 		</div>
@@ -204,8 +204,8 @@ Interface for the game <a href="chickenhunt.io">Chicken Hunt</a>.<br>
 				<div class="row">
 					<div class="col-3">CHKN/DPT</div>
 					<div class="col" id="stlchkn2"></div>
-					<div class="col-2">PROFIT</div>
-					<div class="col" id="profit2"></div>
+					<div class="col-3">PROFIT</div>
+					<div class="col-2" id="profit2"></div>
 				</div>
 			</div>
 		</div>
@@ -236,8 +236,8 @@ Interface for the game <a href="chickenhunt.io">Chicken Hunt</a>.<br>
 				<div class="row">
 					<div class="col-3">CHKN/DPT</div>
 					<div class="col" id="stlchkn3"></div>
-					<div class="col-2">PROFIT</div>
-					<div class="col" id="profit3"></div>
+					<div class="col-3">PROFIT</div>
+					<div class="col-2" id="profit3"></div>
 				</div>
 			</div>
 		</div>
@@ -268,8 +268,8 @@ Interface for the game <a href="chickenhunt.io">Chicken Hunt</a>.<br>
 				<div class="row">
 					<div class="col-3">CHKN/DPT</div>
 					<div class="col" id="stlchkn4"></div>
-					<div class="col-2">PROFIT</div>
-					<div class="col" id="profit4"></div>
+					<div class="col-3">PROFIT</div>
+					<div class="col-2" id="profit4"></div>
 				</div>
 			</div>
 		</div>
@@ -632,7 +632,7 @@ async function attackUser(contractInstance, address){
 function displayAttackTargets(contractInstance, attackTargets){
 	for (var i = attackTargets.length - 1; i >= 0; i--) {
 		let address = ("address" + i).toString();
-		document.getElementById(address).innerHTML = attackTargets[i].address;
+		document.getElementById(address).innerHTML = attackTargets[i].address.substring(0,15)+"...";
 		let hnt = ("hnt" + i).toString();
 		document.getElementById(hnt).innerHTML = parseInt(attackTargets[i].hnt).toLocaleString();
 		let pvp = ("pvp" + i).toString();
