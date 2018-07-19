@@ -569,7 +569,7 @@ async function startAppSlow(web3) {
 
 //functions
 async function sortUsersStats(userStats){
-	return userStats.sort(dynamicSort("stealableChicken"));
+	return userStats.sort(dynamicSort("hnt"));
 }
 
 async function getUserAddressesFromStats(userStats){
@@ -667,6 +667,8 @@ async function getAttackTargets(contractInstance, usersStats, myStats, chknValue
 	attackTargets = await attackTargets.filter(function(el){
 			return el.def <= myStats.pvp;
 		});
+
+	attackTargets = await attackTargets.sort(dynamicSort("stealableChicken"));
 
 	let fiveAttackTargets = [];
 	for (var i = 0; i <= 5-1 ; i++) {
