@@ -48,87 +48,79 @@
 <body>
 
 	<div>
-		<div class="container">
+		<div style="font-size:12px;">
+<div class="container-fluid">
+<h1>CHICKEN HUNT</h1>
+<p>
+Interface for the game <a href="chickenhunt.io">Chicken Hunt</a>.<br>
+
+</p>
+	<h1>ETHEREUM</h1>
 	<div class="row">
-		<div class="col-10">
-			<h1>ETHEREUM</h1>
-		</div>
-		<div class="col-2">
-			<button type="button" class="btn btn-secondary" id="refreshBtn" onclick="
-				function longRefresh(){
-					localStorage.clear();
-					location.reload();
-				};
-				longRefresh()
-			">LONG REFRESH</button>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col">ETH/$</div>
-		<div class="col" id="ethPriceUsd"></div>
+		<div class="col-3">ETH/$</div>
+		<div class="col-3" id="ethPriceUsd"></div>
 		<div class="col">GAS PRICE</div>
-		<div class="col" id="gasPrice"></div>
+		<div class="col-1" id="gasPrice"></div>
 	</div>
 </div>
-
+<p></p>
 <div class="container">
 	<h1>MY STATS</h1>
 	<div class="row">
 		<div class="col" id="myAddress"></div>
 	</div>
 	<div class="row">
-		<div class="col">HNT</div>
+		<div class="col-2">HNT</div>
 		<div class="col" id="myHNT"></div>
-		<div class="col">DEF</div>
+		<div class="col-2">DEF</div>
 		<div class="col" id="myDEF"></div>
 	</div>
 	<div class="row">
-		<div class="col">PVP</div>
+		<div class="col-2">PVP</div>
 		<div class="col" id="myPVP"></div>
-		<div class="col">DPT</div>
+		<div class="col-2">DPT</div>
 		<div class="col" id="myDPT"></div>
 	</div>
 	<div class="row">
-		<div class="col">CHKN</div>
+		<div class="col-2">CHKN</div>
 		<div class="col" id="myChicken"></div>
-		<div class="col">CHKN/DPT</div>
+		<div class="col-3">CHKN/DPT</div>
 		<div class="col" id="myStlChicken"></div>
 	</div>
 </div>
-
+<p></p>
 
 <div class="container">
 	<h1>ALTAR</h1>
 	<div class="row">
-		<div class="col-10">
-			<div class="row">
-				<div class="col">CHKN</div>
-				<div class="col" id="chknProd"></div>
-				<div class="col">ETH</div>
-				<div class="col" id="altarETH"></div>
-			</div>
-			<div class="row">
-				<div class="col">COST</div>
-				<div class="col" id="txCostAltar"></div>
-				<div class="col">PROFIT</div>
-				<div class="col" id="altarProfit"></div>
-			</div>
-		</div>
-		<div class="col-2">
-			<button type="button" class="btn btn-danger" id="altBtn">SACRIFICE</button>
+		<div class="col-2">CHKN</div>
+		<div class="col-4" id="chknProd"></div>
+		<div class="col-2">ETH</div>
+		<div class="col" id="altarETH"></div>
+		<div class="w-100"></div>
+		<div class="col">COST</div>
+		<div class="col" id="txCostAltar"></div>
+		<div class="col">PROFIT</div>
+		<div class="col" id="altarProfit"></div>
+	</div>
+	<div class="row">
+		<div class="col">
+			<button type="button" class="btn btn-primary btn-sm btn-block" id="altBtn">SACRIFICE</button>
 		</div>
 	</div>
 </div>
+<p></p>
 
 <div class="container">
 	<h1>ATTACK</h1>
 	<div class="row">
-		<div class="col">COST</div>
-		<div class="col" id="txCostAttack"></div>
-		<div class="col">BE ATK=>ALT</div>
-		<div class="col" id="attackBreakEven"></div>
+		<div class="col-3">COST</div>
+		<div class="col-3" id="txCostAttack"></div>
 		<div class="col">COOLDOWN</div>
 		<div class="col" id="myAttackCooldown"></div>
+		<div class="w-100"></div>
+		<div class="col-8">BREAK-EVEN ATK THEN SAC</div>
+		<div class="col-4" id="attackBreakEven"></div>
 	</div>
 	<p></p>
 	<div id="attack0">
@@ -136,26 +128,29 @@
 			<div class="col" id="address0"></div>
 		</div>
 		<div class="row">
-			<div class="col-10">
+			<div class="col">
 				<div class="row">
-					<div class="col">HNT</div>
+					<div class="col-2">HNT</div>
 					<div class="col" id="hnt0"></div>
-					<div class="col">PVP</div>
+					<div class="col-2">PVP</div>
 					<div class="col" id="pvp0"></div>
-					<div class="col">DEF</div>
+					<div class="w-100"></div>
+					<div class="col-2">DEF</div>
 					<div class="col" id="def0"></div>
-					<div class="col">DPT</div>
+					<div class="col-2">DPT</div>
 					<div class="col" id="dpt0"></div>
 				</div>
 				<div class="row">
-					<div class="col">CHKN/DPT</div>
+					<div class="col-3">CHKN/DPT</div>
 					<div class="col" id="stlchkn0"></div>
-					<div class="col">PROFIT</div>
+					<div class="col-2">PROFIT</div>
 					<div class="col" id="profit0"></div>
 				</div>
 			</div>
-			<div class="col-2">
-				<button type="button" class="btn btn-danger" id="atkBtn0">ATTACK</button>
+		</div>
+		<div class="row">
+			<div class="col">
+				<button type="button" class="btn btn-danger btn-sm btn-block" id="atkBtn0">ATTACK</button>
 			</div>
 		</div>
 	</div>
@@ -165,26 +160,29 @@
 			<div class="col" id="address1"></div>
 		</div>
 		<div class="row">
-			<div class="col-10">
+			<div class="col">
 				<div class="row">
-					<div class="col">HNT</div>
+					<div class="col-2">HNT</div>
 					<div class="col" id="hnt1"></div>
-					<div class="col">PVP</div>
+					<div class="col-2">PVP</div>
 					<div class="col" id="pvp1"></div>
-					<div class="col">DEF</div>
+					<div class="w-100"></div>
+					<div class="col-2">DEF</div>
 					<div class="col" id="def1"></div>
-					<div class="col">DPT</div>
+					<div class="col-2">DPT</div>
 					<div class="col" id="dpt1"></div>
 				</div>
 				<div class="row">
-					<div class="col">CHKN/DPT</div>
+					<div class="col-3">CHKN/DPT</div>
 					<div class="col" id="stlchkn1"></div>
-					<div class="col">PROFIT</div>
+					<div class="col-2">PROFIT</div>
 					<div class="col" id="profit1"></div>
 				</div>
 			</div>
-			<div class="col-2">
-				<button type="button" class="btn btn-danger" id="atkBtn1">ATTACK</button>
+		</div>
+		<div class="row">
+			<div class="col">
+				<button type="button" class="btn btn-danger btn-sm btn-block" id="atkBtn1">ATTACK</button>
 			</div>
 		</div>
 	</div>
@@ -194,26 +192,29 @@
 			<div class="col" id="address2"></div>
 		</div>
 		<div class="row">
-			<div class="col-10">
+			<div class="col">
 				<div class="row">
-					<div class="col">HNT</div>
+					<div class="col-2">HNT</div>
 					<div class="col" id="hnt2"></div>
-					<div class="col">PVP</div>
+					<div class="col-2">PVP</div>
 					<div class="col" id="pvp2"></div>
-					<div class="col">DEF</div>
+					<div class="w-100"></div>
+					<div class="col-2">DEF</div>
 					<div class="col" id="def2"></div>
-					<div class="col">DPT</div>
+					<div class="col-2">DPT</div>
 					<div class="col" id="dpt2"></div>
 				</div>
 				<div class="row">
-					<div class="col">CHKN/DPT</div>
+					<div class="col-3">CHKN/DPT</div>
 					<div class="col" id="stlchkn2"></div>
-					<div class="col">PROFIT</div>
+					<div class="col-2">PROFIT</div>
 					<div class="col" id="profit2"></div>
 				</div>
 			</div>
-			<div class="col-2">
-				<button type="button" class="btn btn-danger" id="atkBtn2">ATTACK</button>
+		</div>
+		<div class="row">
+			<div class="col">
+				<button type="button" class="btn btn-danger btn-sm btn-block" id="atkBtn2">ATTACK</button>
 			</div>
 		</div>
 	</div>
@@ -223,26 +224,29 @@
 			<div class="col" id="address3"></div>
 		</div>
 		<div class="row">
-			<div class="col-10">
+			<div class="col">
 				<div class="row">
-					<div class="col">HNT</div>
+					<div class="col-2">HNT</div>
 					<div class="col" id="hnt3"></div>
-					<div class="col">PVP</div>
+					<div class="col-2">PVP</div>
 					<div class="col" id="pvp3"></div>
-					<div class="col">DEF</div>
+					<div class="w-100"></div>
+					<div class="col-2">DEF</div>
 					<div class="col" id="def3"></div>
-					<div class="col">DPT</div>
+					<div class="col-2">DPT</div>
 					<div class="col" id="dpt3"></div>
 				</div>
 				<div class="row">
-					<div class="col">CHKN/DPT</div>
+					<div class="col-3">CHKN/DPT</div>
 					<div class="col" id="stlchkn3"></div>
-					<div class="col">PROFIT</div>
+					<div class="col-2">PROFIT</div>
 					<div class="col" id="profit3"></div>
 				</div>
 			</div>
-			<div class="col-2">
-				<button type="button" class="btn btn-danger" id="atkBtn3">ATTACK</button>
+		</div>
+		<div class="row">
+			<div class="col">
+				<button type="button" class="btn btn-danger btn-sm btn-block" id="atkBtn3">ATTACK</button>
 			</div>
 		</div>
 	</div>
@@ -252,29 +256,46 @@
 			<div class="col" id="address4"></div>
 		</div>
 		<div class="row">
-			<div class="col-10">
+			<div class="col">
 				<div class="row">
-					<div class="col">HNT</div>
+					<div class="col-2">HNT</div>
 					<div class="col" id="hnt4"></div>
-					<div class="col">PVP</div>
+					<div class="col-2">PVP</div>
 					<div class="col" id="pvp4"></div>
-					<div class="col">DEF</div>
+					<div class="w-100"></div>
+					<div class="col-2">DEF</div>
 					<div class="col" id="def4"></div>
-					<div class="col">DPT</div>
+					<div class="col-2">DPT</div>
 					<div class="col" id="dpt4"></div>
 				</div>
 				<div class="row">
-					<div class="col">CHKN/DPT</div>
+					<div class="col-3">CHKN/DPT</div>
 					<div class="col" id="stlchkn4"></div>
-					<div class="col">PROFIT</div>
+					<div class="col-2">PROFIT</div>
 					<div class="col" id="profit4"></div>
 				</div>
 			</div>
-			<div class="col-2">
-				<button type="button" class="btn btn-danger" id="atkBtn4">ATTACK</button>
+		</div>
+		<div class="row">
+			<div class="col">
+				<button type="button" class="btn btn-danger btn-sm btn-block" id="atkBtn4">ATTACK</button>
 			</div>
 		</div>
 	</div>
+
+	<p></p>
+	<div class="row">
+		<div class="col">
+			<button type="button" class="btn btn-secondary btn-sm btn-block" id="refreshBtn" onclick="
+				function longRefresh(){
+					localStorage.clear();
+					location.reload();
+				};
+				longRefresh()
+			">LONG REFRESH</button>
+		</div>
+	</div>
+</div>
 </div>
 
 <script type="text/javascript">
