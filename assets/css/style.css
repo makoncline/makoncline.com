@@ -101,7 +101,8 @@ select{
     background-color:#fff
 }
 label{
-    margin:0.5em 0 0.2em
+    margin:0.5em 0 0.2em;
+    color:#122333;
 }
 section{
     margin-bottom:4em;
@@ -111,7 +112,8 @@ section#navigation{
     padding-top: 3em;
     padding-bottom: .25em;
     padding-left: .25em;
-    background-color:#1c4a60
+    background-color:#1c4a60;
+    border-radius: .25em;
 }
 @media screen and (max-width: 400px){
     section#navigation h1{
@@ -143,50 +145,6 @@ body#home div#content ul li{
 body#home div#content section#photos img{
     display:inline
 }
-div.blogparent{
-    font-size:1.2em;
-    font-weight:bold;
-    margin:1em 0 -0.5em 0
-}
 body#oneblog div#content article header h1{
     margin-bottom:0
-}
-div#comments ol{
-    padding-left:1em
-}
-div#comments li{
-    margin-bottom:2em
-}
-div#comments li p{
-    overflow-wrap:break-word;
-    word-wrap:break-word
-}
-div#comments span.response{
-    display:block;
-    margin-left:1em;
-    padding:4px;
-    background-color:#ffc;
-    border:1px solid #000;
-    font-family:sans-serif;
-    font-size:14px
-}
-body#onebook figure img,body#booklist figure img{
-    float:left;
-    margin-right:2em
-}
-body#booklist div.abook{
-    margin:0 0 8em 0
-}
-div.presentation_summary{
-    margin-bottom:6em
-}
-@media screen and (max-width: 400px){
-    div.presentation_summary img{
-        display:block
-    }
-}
-@media screen and (min-width: 400px){
-    div.presentation_summary img{
-        float:right
-    }
 }
