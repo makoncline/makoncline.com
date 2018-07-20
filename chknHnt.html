@@ -573,9 +573,10 @@ async function sortUsersStats(userStats){
 }
 
 async function getUserAddressesFromStats(userStats){
+	let sorted = await userStats.sort(dynamicSort("hnt"));
 	let result = [];
-	for (var i = 0; i < userStats.length; i++) {
-		result.push(userStats[i].address);
+	for (var i = 0; i < sorted.length; i++) {
+		result.push(sorted[i].address);
 	}
 	return result;
 }
