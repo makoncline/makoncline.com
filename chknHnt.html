@@ -989,7 +989,7 @@ async function getEtherStats(){
 	console.log("loading ethereum stats...");
 	const ethPriceUsd = await (await fetch("https://api.coinmarketcap.com/v1/ticker/ethereum/")).json()
 		.then(json => json[0].price_usd);
-	const gasPrice = await getGasPrice();
+	const gasPrice = (await getGasPrice())+1;
 	displayEtherStats(ethPriceUsd, gasPrice);
 	return {"ethPriceUsd":parseFloat(ethPriceUsd), "gasPrice":gasPrice};
 }
