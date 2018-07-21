@@ -762,7 +762,7 @@ async function getAltarETH(contractInstance){
 	console.log(altarRecordID);
 	const altarRecord = await getAltarRecord(contractInstance, altarRecordID);
 	console.log("Current altar record recieved");
-	const altarETH = await parseInt(altarRecord[0].c[0].toString() + altarRecord[0].c[1].toString())*Math.pow(10,-18);
+	const altarETH = await parseInt(altarRecord[0].c[0].toString() + altarRecord[0].c[1].toString())*Math.pow(10,-17);
 	console.log("Altar ETH recieved");
 	document.getElementById("altarETH").innerHTML = altarETH.toFixed(9);
 	return altarETH;
