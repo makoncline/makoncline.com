@@ -300,130 +300,15 @@ const chknHntAddress = "0x1eD3d2c916cab00631cce4b08a7F880d4Badae94";
 
 //app
 window.addEventListener('load', function() {
-  if (localStorage.altarGasStats &&
-    localStorage.attackGasStats &&
-    localStorage.totalChickenProduction &&
-    localStorage.users){
-  	  getWeb3(startAppFast);
-  } else {
-  	getWeb3(startAppSlow);
-  }
+  getWeb3(startAppSlow);
   console.log("web3 recieved");
 });
-
-async function startAppFast(web3, storedAltarGas, storedAttackGas, storedChknProd, storedUsers) {
-	console.log(storedAltarGas);
-	console.log(storedAttackGas);
-	console.log(storedChknProd);
-	console.log(storedUsers);
-	//asyn fetch ether stats and store in variable
-    let etherStats = await getEtherStats()
-		.then(response => {
-			console.log(response);
-			return response;
-		})
-		.catch(err => console.log(err));
-	console.log("Ether stats recieved");
-	let ethPriceUSD = etherStats.ethPriceUsd;
-	let gasPrice = etherStats.gasPrice;
-
-	const chickenHunt = await getContractInstance(chknHntAddress)
-		.then(response => {
-			console.log(response);
-			return response;
-		})
-		.catch(err => console.log(err));
-	console.log("Contract instance recieved");
-
-	const myAddress = await web3.eth.defaultAccount;
-
-	let myStats = await getMyStats(chickenHunt, myAddress)
-			.then(response => {
-			console.log(response);
-			return response;
-		})
-		.catch(err => console.log(err));
-
-	const altarETH = await  getAltarETH(chickenHunt)
-			.then(response => {
-			console.log(response);
-			return response;
-		})
-		.catch(err => console.log(err));
-
-	let altarTxCost = await getAltarTxCost(chickenHunt, etherStats.ethPriceUsd, etherStats.gasPrice, storedAltarGas)
-		.then(response => {
-			console.log(response);
-			return response;
-		})
-		.catch(err => console.log(err));
-	console.log("Altar Tx cost recieved");
-
-	let attackTxCost = await getAttackTxCost(chickenHunt, etherStats.ethPriceUsd, etherStats.gasPrice, storedAttackGas)
-			.then(response => {
-				console.log(response)
-				return response
-			})
-			.catch(err => console.log(response));
-	console.log("Attack Tx cost recieved");
-
-	let chknProd = storedChknProd;
-	document.getElementById("chknProd").innerHTML = chknProd.toLocaleString();
-
-	let chknValue = await altarETH/chknProd*etherStats.ethPriceUsd
-	console.log("chknValve "+chknValue + "attackTxCost:" + attackTxCost);
-
-	let breakEvenAtkAlt = (attackTxCost.usd+altarTxCost.usd)/chknValue;
-	document.getElementById("attackBreakEven").innerHTML = parseInt(breakEvenAtkAlt).toLocaleString();
-
-	let altarProfit = await getAltarProfit(myStats.chicken, chknValue, altarTxCost);
-
-	$("#altBtn").off("click");
-	$("#altBtn").click(function() {
-		  displaySacrificeAlert(chickenHunt, myStats);
-	});
-
-	let chknHntUsers = [];
-	for (var i = 0; i < 20; i++) {
-		chknHntUsers.push(storedUsers[i]);
-	}
-
-	let chknHntUsersStats = await getUsersStats(chickenHunt, chknHntUsers)
-			.then(response => {
-			console.log(response);
-			return response;
-		})
-		.catch(err => console.log(err));
-	console.log("ChickenHunt users stats recieved");
-
-	let sortedUserStats = await sortUsersStats(chknHntUsersStats)
-		.then(response => {
-			console.log(response);
-			return response;
-		})
-		.catch(err => console.log(err));
-
-	let attackTargets = await getAttackTargets(chickenHunt, sortedUserStats, myStats, chknValue, attackTxCost)
-		.then(response => {
-			console.log(response);
-			return response;
-		})
-		.catch(err => console.log(err));
-	console.log("attack targets recieved");
-
-	setTimeout( function(){
-    	startAppFast(web3, storedAltarGas, storedAttackGas, storedChknProd, storedUsers);
-    	},
-	30000);
-}
-
-
-
 
 async function startAppSlow(web3) {
 	console.log("app started");
     
     //asyn fetch ether stats and store in variable
+    //not necessary, but its fast so why not
     let etherStats = await getEtherStats()
 		.then(response => {
 			console.log(response);
@@ -434,6 +319,14 @@ async function startAppSlow(web3) {
 	let ethPriceUSD = etherStats.ethPriceUsd;
 	let gasPrice = etherStats.gasPrice;
 
+	//altar button function
+		$("#altBtn").off("click");
+	$("#altBtn").click(function() {
+		  displaySacrificeAlert(chickenHunt, myStats);
+	});
+
+
+	//get game instance
 	const chickenHunt = await getContractInstance(chknHntAddress)
 		.then(response => {
 			console.log(response);
@@ -442,6 +335,7 @@ async function startAppSlow(web3) {
 		.catch(err => console.log(err));
 	console.log("Contract instance recieved");
 
+	//get my info
 	const myAddress = await web3.eth.defaultAccount;
 
 	let myStats = await getMyStats(chickenHunt, myAddress)
@@ -451,123 +345,267 @@ async function startAppSlow(web3) {
 		})
 		.catch(err => console.log(err));
 
-	const altarETH = await  getAltarETH(chickenHunt)
-			.then(response => {
-			console.log(response);
-			return response;
-		})
-		.catch(err => console.log(err));
-
-	let altarGasStats = 	await getAltarGasStats(chickenHunt)
-		.then(response => {
-				console.log(response)
-				localStorage.altarGasStats = JSON.stringify(response);
-				return response
-			})
-			.catch(err => console.log(response));
-	console.log("Altar gas stats recieved");
-
-	let altarTxCost = await getAltarTxCost(chickenHunt, etherStats.ethPriceUsd, etherStats.gasPrice, altarGasStats)
+	//get users
+	let chknHntUsers = [];
+	if (localStorage.userAddresses){
+		console.log(JSON.parse(localStorage.userAddresses));
+		chknHntUsers = JSON.parse(localStorage.userAddresses);
+		console.log("ChickenHunt users loaded from local storage");
+	} else {
+	chknHntUsers = await getUsers(chickenHunt)
 		.then(response => {
 			console.log(response);
-			return response;
-		})
-		.catch(err => console.log(err));
-	console.log("Altar Tx cost recieved");
-
-	let attackGasStats = await getAttackGasStats(chickenHunt)
-		.then(response => {
-				console.log(response)
-				localStorage.attackGasStats = JSON.stringify(response);
-				return response
-			})
-			.catch(err => console.log(response));
-	console.log("Attack gas stats recieved");
-
-	let attackTxCost = await getAttackTxCost(chickenHunt, etherStats.ethPriceUsd, etherStats.gasPrice, attackGasStats)
-			.then(response => {
-				console.log(response)
-				return response
-			})
-			.catch(err => console.log(response));
-	console.log("Attack Tx cost recieved");
-
-	let chknHntUsers = await getUsers(chickenHunt)
-		.then(response => {
-			console.log(response);
+			localStorage.userAddresses = response;
 			return response;
 		})
 		.catch(err => console.log(err));
 	console.log("ChickenHunt users recieved");
+	}
 
-	let chknHntUsersStats = await getUsersStats(chickenHunt, chknHntUsers)
-			.then(response => {
-			console.log(response);
-			return response;
-		})
-		.catch(err => console.log(err));
-	console.log("ChickenHunt users stats recieved");
 
-	let chknProd = await getTotalChickenProduction(chickenHunt, chknHntUsersStats)
-		.then(response => {
-			console.log(response);
-			localStorage.totalChickenProduction = JSON.stringify(response);
-			return response;
-		})
-		.catch(err => console.log(err));
-	console.log("Total chicken production recieved");
+	// updateUsersStats(chickenHunt, chknHntUsers, myStats, async function(response){
+	// 	displayAttackTargets(chickenHunt, response);
+	// });
 
-	let chknValue = await altarETH/chknProd*etherStats.ethPriceUsd
-	console.log("chknValve "+chknValue + "attackTxCost:" + attackTxCost);
+	var usersStats = [];
+	//,{fromBlock: 5851509, toBlock: 'latest'}
 
-	let breakEvenAtkAlt = (attackTxCost.usd+altarTxCost.usd)/chknValue;
-	document.getElementById("attackBreakEven").innerHTML = parseInt(breakEvenAtkAlt).toLocaleString();
+	//update whenever thrers an attack
+	chickenHunt.Attack({}, "latest").watch(async function(error, result){
+		console.log(result);
+		let users = [result.args.attacker, result.args.defender];
+		for (var i = 0; i < users.length; i++) {
+			let stats = await getStats(chickenHunt, users[i]);
+			if (usersStats){
+				let user= findObjectByKey(usersStats, "address", stats.address);
+				if (user){
+					let index = usersStats.findIndex(x => x.address==user.address);
+					usersStats[index] = user;
+				} else {
+					usersStats.push(stats);
+				}
+			} else {
+				usersStats.push(stats);
+			}
+			//filter out users i cant attack
+			usersStats = await getAttackTargets(chickenHunt, usersStats, myStats);
+			//sort the results so users with more chicken will be updated first
+			usersStats.sort(dynamicSort("stealableChicken"));
+			displayAttackTargets(chickenHunt, usersStats);
 
-	let altarProfit = await getAltarProfit(myStats.chicken, chknValue, altarTxCost);
-
-	$("#altBtn").off("click");
-	$("#altBtn").click(function() {
-		  displaySacrificeAlert(chickenHunt, myStats);
+			let sortedUserAddressList = [];
+			for (var i = 0; i < usersStats.length; i++) {
+				sortedUserAddressList.push(usersStats[i].address);
+			}
+			localStorage.userAddresses = JSON.stringify(sortedUserAddressList);
+		}
 	});
 
-	let sortedUserStats = await sortUsersStats(chknHntUsersStats)
-		.then(response => {
-			console.log(response);
-			return response;
-		})
-		.catch(err => console.log(err));
+	//update whenever chickens are sacrificed
+	chickenHunt.ChickenToAltar({}, "latest").watch(async function(error, result){
+		console.log(result);
+		let users = [result.args.user];
+		for (var i = 0; i < users.length; i++) {
+			let stats = await getStats(chickenHunt, users[i]);
+			if (usersStats){
+				let user= findObjectByKey(usersStats, "address", stats.address);
+				if (user){
+					let index = usersStats.findIndex(x => x.address==user.address);
+					usersStats[index] = user;
+				} else {
+					usersStats.push(stats);
+				}
+			} else {
+				usersStats.push(stats);
+			}
+			//filter out users i cant attack
+			usersStats = await getAttackTargets(chickenHunt, usersStats, myStats);
+			//sort the results so users with more chicken will be updated first
+			usersStats.sort(dynamicSort("stealableChicken"));
+			displayAttackTargets(chickenHunt, usersStats);
+			
+			let sortedUserAddressList = [];
+			for (var i = 0; i < usersStats.length; i++) {
+				sortedUserAddressList.push(usersStats[i].address);
+			}
+			localStorage.userAddresses = JSON.stringify(sortedUserAddressList);
+		}
+	});
 
-	let attackTargets = await getAttackTargets(chickenHunt, sortedUserStats, myStats, chknValue, attackTxCost)
-		.then(response => {
-			console.log(response);
-			return response;
-		})
-		.catch(err => console.log(err));
-	console.log("attack targets recieved");
+	let initailLoadDone = false;
+	if (!usersStats.length){
+		updateAllUsersStats()
+	}
+	setInterval(function(){
+		if (initailLoadDone){
+			updateTop5UsersStats()
+		}
+	},5000);
 
-	let sortedUsers = await getUserAddressesFromStats(attackTargets)
-		.then(response => {
-			console.log(response);
-			localStorage.users = JSON.stringify(response);
-			return response;
-		})
-		.catch(err => console.log(err));
+	async function updateAllUsersStats(){
+		let users = chknHntUsers;
+		//loop through users updating stats
+		for (var i = 0; i < users.length; i++) {
+			let stats = await getStats(chickenHunt, users[i]);
+			let user= findObjectByKey(usersStats, "address", stats.address);
+			if (user){
+				let index = usersStats.findIndex(x => x.address==user.address);
+				usersStats[index] = user;
+			} else {
+				usersStats.push(stats);
+			}
+			//filter ou users i cant attack
+			usersStats = await getAttackTargets(chickenHunt, usersStats, myStats);
+			console.log("attack targets found");
+			//sort the results so users with more chicken will be updated first
+			usersStats.sort(dynamicSort("stealableChicken"));
+			displayAttackTargets(chickenHunt, usersStats);
+		}
+		//get just the addresses 
+		let sortedUserAddressList = [];
+		for (var i = 0; i < usersStats.length; i++) {
+			sortedUserAddressList.push(usersStats[i].address);
+		}
+		localStorage.userAddresses = JSON.stringify(sortedUserAddressList);
+		chknHntUsers = sortedUserAddressList;
+		initailLoadDone = true
+	}
 
-
-	if (localStorage.altarGasStats &&
-    	localStorage.attackGasStats &&
-    	localStorage.totalChickenProduction &&
-    	localStorage.users){
-
-    	let storedAltarGas = JSON.parse(localStorage.altarGasStats);
-    	let storedAttackGas = JSON.parse(localStorage.attackGasStats);
-    	let storedTotalChickenProduction = JSON.parse(localStorage.totalChickenProduction);
-    	let storedChknHntUsers = JSON.parse(localStorage.users);
-	    startAppFast(web3, storedAltarGas, storedAttackGas, storedTotalChickenProduction, storedChknHntUsers);
+	async function updateTop5UsersStats(){
+		let users = chknHntUsers;
+		//loop through users updating stats
+		for (var i = 0; i < 5; i++) {
+			let stats = await getStats(chickenHunt, users[i]);
+			console.log(stats);
+			let user= findObjectByKey(usersStats, "address", stats.address);
+			if (user){
+				let index = usersStats.findIndex(x => x.address==user.address);
+				console.log(usersStats);
+				usersStats.splice(i,1, user);
+				console.log(userStats);
+			} else {
+				console.log("new user");
+				usersStats.push(stats);
+			}
+		}
+		//filter ou users i cant attack
+		console.log(userStats);
+		usersStats = await getAttackTargets(chickenHunt, usersStats, myStats);
+		console.log(userStats);
+		//sort the results so users with more chicken will be updated first
+		usersStats.sort(dynamicSort("stealableChicken"));
+		console.log(userStats);
+		displayAttackTargets(chickenHunt, usersStats);
+		//get just the addresses 
+		let sortedUserAddressList = [];
+		for (var i = 0; i < usersStats.length; i++) {
+			sortedUserAddressList.push(usersStats[i].address);
+		}
+		localStorage.userAddresses = JSON.stringify(sortedUserAddressList);
+		chknHntUsers = sortedUserAddressList;
 	}
 }
 
 //functions
+async function updateUsersStats(contractInstance, users, myStats, callback){
+	var usersStats = [];
+	//,{fromBlock: 5851509, toBlock: 'latest'}
+
+	//update whenever thrers an attack
+	contractInstance.Attack({}, "latest").watch(async function(error, result){
+		console.log(result);
+		let users = [result.args.attacker, result.args.defender];
+		for (var i = 0; i < users.length; i++) {
+			let stats = await getStats(contractInstance, users[i]);
+			if (usersStats){
+				let user= findObjectByKey(usersStats, "address", stats.address);
+				if (user){
+					let index = userStats.findIndex(x => x.address==user.address);
+					usersStats[index] = user;
+				} else {
+					usersStats.push(stats);
+				}
+			} else {
+				usersStats.push(stats);
+			}
+			//filter out users i cant attack
+			usersStats = await getAttackTargets(contractInstance, usersStats, myStats);
+			//sort the results so users with more chicken will be updated first
+			usersStats.sort(dynamicSort("stealableChicken"));
+			callback(usersStats);
+		}
+	});
+
+	//update whenever chickens are sacrificed
+	contractInstance.ChickenToAltar({}, "latest").watch(async function(error, result){
+		console.log(result);
+		let users = [result.args.user];
+		for (var i = 0; i < users.length; i++) {
+			let stats = await getStats(contractInstance, users[i]);
+			if (usersStats){
+				let user= findObjectByKey(usersStats, "address", stats.address);
+				if (user){
+					let index = userStats.findIndex(x => x.address==user.address);
+					usersStats[index] = user;
+				} else {
+					usersStats.push(stats);
+				}
+			} else {
+				usersStats.push(stats);
+			}
+			//filter out users i cant attack
+			usersStats = await getAttackTargets(contractInstance, usersStats, myStats);
+			//sort the results so users with more chicken will be updated first
+			usersStats.sort(dynamicSort("stealableChicken"));
+			callback(usersStats);
+		}
+	});
+
+	//loop through users updating stats
+	for (var i = 0; i < users.length; i++) {
+		let stats = await getStats(contractInstance, users[i]);
+		let user= findObjectByKey(usersStats, "address", stats.address);
+		if (user){
+			let index = userStats.findIndex(x => x.address==user.address);
+			usersStats[index] = user;
+		} else {
+			usersStats.push(stats);
+		}
+		//filter ou users i cant attack
+		usersStats = await getAttackTargets(contractInstance, usersStats, myStats);
+		//sort the results so users with more chicken will be updated first
+		usersStats.sort(dynamicSort("stealableChicken"));
+		callback(usersStats);
+	}
+	//get just the addresses 
+	let sortedUserAddressList = [];
+	for (var i = 0; i < usersStats.length; i++) {
+		sortedUserAddressList.push(usersStats[i].address);
+	}
+	//call the function again with previous highest chicken up
+	console.log("done getting user stats")
+	// save the sorted address list to local storage
+	localStorage.userAddresses = JSON.stringify(sortedUserAddressList);
+	//call function again with sorted address list
+	//updateUsersStats(contractInstance, sortedUserAddressList, myStats, callback);
+
+	setTimeout(
+		function(){
+
+		}
+	,5000);
+
+}
+
+function findObjectByKey(array, key, value) {
+    for (var i = 0; i < array.length; i++) {
+        if (array[i][key] === value) {
+            return array[i];
+        }
+    }
+    return null;
+}
+
 async function sortUsersStats(userStats){
 	return userStats.sort(dynamicSort("hnt"));
 }
@@ -631,6 +669,26 @@ async function attackUser(contractInstance, address){
 }
 
 function displayAttackTargets(contractInstance, attackTargets){
+	attackTargets = attackTargets.slice(0,5);
+	console.log(attackTargets);
+	// clear current values
+	for (var i = attackTargets.length - 1; i >= 0; i--) {
+		let address = ("address" + i).toString();
+		document.getElementById(address).innerHTML = "";
+		let hnt = ("hnt" + i).toString();
+		document.getElementById(hnt).innerHTML = "";
+		let pvp = ("pvp" + i).toString();
+		document.getElementById(pvp).innerHTML = "";
+		let def = ("def" + i).toString();
+		document.getElementById(def).innerHTML ="";
+		let dpt = ("dpt" + i).toString();
+		document.getElementById(dpt).innerHTML = "";
+		let stlchkn = ("stlchkn" + i).toString();
+		document.getElementById(stlchkn).innerHTML = "";
+		let atkBtn = ("atkBtn" + i).toString();
+		$("#"+atkBtn).off("click");
+	}
+	//write new values
 	for (var i = attackTargets.length - 1; i >= 0; i--) {
 		let address = ("address" + i).toString();
 		document.getElementById(address).innerHTML = attackTargets[i].address.substring(0,15)+"...";
@@ -644,8 +702,6 @@ function displayAttackTargets(contractInstance, attackTargets){
 		document.getElementById(dpt).innerHTML = parseInt(attackTargets[i].dpt).toLocaleString();
 		let stlchkn = ("stlchkn" + i).toString();
 		document.getElementById(stlchkn).innerHTML = parseInt(attackTargets[i].stealableChicken).toLocaleString();
-		let profit = ("profit" + i).toString();
-		document.getElementById(profit).innerHTML = "$"+attackTargets[i].profit.toFixed(2);
 		let atkBtn = ("atkBtn" + i).toString();
 		let addressString = attackTargets[i].address;
 		$("#"+atkBtn).off("click");
@@ -655,7 +711,7 @@ function displayAttackTargets(contractInstance, attackTargets){
 	}
 }
 
-async function getAttackTargets(contractInstance, usersStats, myStats, chknValue, txCostAttack){
+async function getAttackTargets(contractInstance, usersStats, myStats){
 	var attackTargets = usersStats;
 	//remove my own address
 	for (var i = 0; i < attackTargets.length ; i++) {
@@ -672,13 +728,19 @@ async function getAttackTargets(contractInstance, usersStats, myStats, chknValue
 	attackTargets = await attackTargets.sort(dynamicSort("stealableChicken"));
 
 	let fiveAttackTargets = [];
-	for (var i = 0; i <= 5-1 ; i++) {
-		fiveAttackTargets.push(attackTargets[i]);
+
+	if (attackTargets.length < 5){
+		for (var i = 0; i <= attackTargets.length - 1 ; i++) {
+			fiveAttackTargets.push(attackTargets[i]);
+		}
+	} else {
+		for (var i = 0; i <= 5 - 1 ; i++) {
+			fiveAttackTargets.push(attackTargets[i]);
+		}
 	}
-	for (var i = fiveAttackTargets.length - 1; i >= 0; i--) {
-		fiveAttackTargets[i].profit = fiveAttackTargets[i].stealableChicken*chknValue - txCostAttack.usd;
-	}
-	displayAttackTargets(contractInstance, fiveAttackTargets);
+	// for (var i = fiveAttackTargets.length - 1; i >= 0; i--) {
+	// 	fiveAttackTargets[i].profit = fiveAttackTargets[i].stealableChicken*chknValue - txCostAttack.usd;
+	// }
 
 	return attackTargets;
 }
@@ -900,7 +962,7 @@ function displayMyStats(userAddress, chicken, hnt, pvp, def, dpt, cooldown){
 	document.getElementById("myAddress").innerHTML = userAddress;
 	document.getElementById("myChicken").innerHTML = parseInt(chicken).toLocaleString();
 	document.getElementById("myStlChicken").innerHTML = parseInt(chicken/dpt).toLocaleString();
-	document.getElementById("myAttackCooldown").innerHTML = parseInt(cooldown/60) + ":" + parseInt((cooldown % 60));
+	document.getElementById("myAttackCooldown").innerHTML = parseInt(cooldown).toLocaleString();
 	document.getElementById("myHNT").innerHTML = parseInt(hnt).toLocaleString();
 	document.getElementById("myPVP").innerHTML = parseInt(pvp).toLocaleString();
 	document.getElementById("myDEF").innerHTML = parseInt(def).toLocaleString();
