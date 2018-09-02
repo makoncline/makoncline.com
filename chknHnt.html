@@ -414,7 +414,7 @@ async function startAppFast(web3, storedAltarGas, storedAttackGas, storedChknPro
 	setTimeout( function(){
     	startAppFast(web3, storedAltarGas, storedAttackGas, storedChknProd, storedUsers);
     	},
-	30000);
+	5000);
 }
 
 
@@ -458,13 +458,17 @@ async function startAppSlow(web3) {
 		})
 		.catch(err => console.log(err));
 
-	let altarGasStats = 	await getAltarGasStats(chickenHunt)
-		.then(response => {
-				console.log(response)
-				localStorage.altarGasStats = JSON.stringify(response);
-				return response
-			})
-			.catch(err => console.log(response));
+	//manually do altar gas stats since it stopped working for some reason
+	// let altarGasStats = 	await getAltarGasStats(chickenHunt)
+	// 	.then(response => {
+	// 			console.log(response)
+	// 			localStorage.altarGasStats = JSON.stringify(response);
+	// 			return response
+	// 		})
+	// 		.catch(err => console.log(response));
+	// console.log("Altar gas stats recieved");
+	let altarGasStats = { min: 0, max: 0, avg: 62000 };
+	localStorage.altarGasStats = JSON.stringify(altarGasStats);
 	console.log("Altar gas stats recieved");
 
 	let altarTxCost = await getAltarTxCost(chickenHunt, etherStats.ethPriceUsd, etherStats.gasPrice, altarGasStats)
@@ -475,13 +479,17 @@ async function startAppSlow(web3) {
 		.catch(err => console.log(err));
 	console.log("Altar Tx cost recieved");
 
-	let attackGasStats = await getAttackGasStats(chickenHunt)
-		.then(response => {
-				console.log(response)
-				localStorage.attackGasStats = JSON.stringify(response);
-				return response
-			})
-			.catch(err => console.log(response));
+	//manually do attack gas stats since it stopped working for some reason
+	// let attackGasStats = await getAttackGasStats(chickenHunt)
+	// 	.then(response => {
+	// 			console.log(response)
+	// 			localStorage.attackGasStats = JSON.stringify(response);
+	// 			return response
+	// 		})
+	// 		.catch(err => console.log(response));
+	// console.log("Attack gas stats recieved");
+	let attackGasStats = { min: 0, max: 0, avg: 62000 };
+	localStorage.attackGasStats = JSON.stringify(attackGasStats);
 	console.log("Attack gas stats recieved");
 
 	let attackTxCost = await getAttackTxCost(chickenHunt, etherStats.ethPriceUsd, etherStats.gasPrice, attackGasStats)
@@ -569,7 +577,7 @@ async function startAppSlow(web3) {
 
 //functions
 async function sortUsersStats(userStats){
-	return userStats.sort(dynamicSort("hnt"));
+	return userStats.sort(dynamicSort("hntPerDpt"));
 }
 
 async function getUserAddressesFromStats(userStats){
@@ -873,6 +881,8 @@ function getUsersFrom(joinEvents){
 	return result;
 }
 
+//5851509 is orgin block
+
 function getJoinEvents(contractInstance){
 	console.log("loading join events...");
 	return new Promise(resolve => {
@@ -928,7 +938,8 @@ async function getStats(contractInstance, userAddress){
 		"hnt": details.hnt,
 		"pvp": details.pvp,
 		"def": details.def,
-		"dpt": details.dpt
+		"dpt": details.dpt,
+		"hntPerDpt": details.hnt/details.dpt
 	}
 	console.log(
 		"address: "+ userAddress+
