@@ -11,7 +11,7 @@ module.exports = {
       }
     }
   ],
-  // Customize your site metadata:
+
   siteMetadata: {
     title: `Makon Cline`,
     author: `Makon Cline`,
