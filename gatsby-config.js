@@ -9,7 +9,14 @@ module.exports = {
       options: {
         emoji: '🌊'
       }
-    }
+    },
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: "UA-90889787-1",
+        head: false,
+      },
+    },
   ],
 
   siteMetadata: {
