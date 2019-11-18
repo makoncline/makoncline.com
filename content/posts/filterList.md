@@ -1,7 +1,7 @@
 ---
-path: "/panels"
-date: "2019-11-17"
-title: "Flex Panels"
+path: "/filter"
+date: "2019-11-18"
+title: "Filter List"
 excerpt: "Filter list with an input. search for a city or a state and view the population. Part of the javascript30 challenge."
 tags: ["Javascript30"]
 url: "http://population.makoncline.com"
