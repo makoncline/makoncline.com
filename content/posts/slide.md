@@ -6,7 +6,7 @@ excerpt: "Images slide onto the page as they are scrolled into view. Part of the
 tags: ["Javascript30"]
 ---
 
-Check it out [here](http://slide.makoncline.com). This isn't made for mobile, sorry!  
+Check it out [here](http://slide.makoncline.com).
 View on GitHub [here](https://github.com/makoncline/slideInOnScroll).
 
 I made this as part of the [JavaScript30](https://javascript30.com/) challenge.
