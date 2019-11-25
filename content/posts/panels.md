@@ -6,7 +6,7 @@ excerpt: "Full page flex panels with random images that grow and slide in additi
 tags: ["Javascript30"]
 ---
 
-Check it out [here](http://panels.makoncline.com).  
+Check it out [here](http://panels.makoncline.com). This isn't made for mobile, sorry!    
 View on GitHub [here](https://github.com/makoncline/flexPanels).
 
 I made this as part of the [JavaScript30](https://javascript30.com/) challenge.
